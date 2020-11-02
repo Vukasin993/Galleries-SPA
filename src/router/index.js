@@ -3,6 +3,9 @@ import VueRouter from 'vue-router'
 import AllGalleries from '../components/AllGalleries.vue'
 import Login from '../components/Login'
 import Register from '../components/Register'
+import MyGalleries from '../components/MyGalleries'
+import CreateNewGallery from '../components/CreateNewGallery'
+
 
 
 Vue.use(VueRouter)
@@ -12,6 +15,16 @@ const routes = [
     path: '/',
     name: 'all-galleries',
     component: AllGalleries
+  },
+  {
+    path: '/my-galleries',
+    name: 'my-galleries',
+    component: MyGalleries
+  },
+  {
+    path: '/create',
+    name: 'create-new-gallery',
+    component: CreateNewGallery
   },
   {
     path: '/login',

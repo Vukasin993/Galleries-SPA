@@ -6,8 +6,8 @@ class AuthService extends HttpService {
          return this.axios.post('http://localhost:8000/api/login', {email, password})
     }
 
-    // register(user) {
-    //     return this.axios.post('http://localhost:8000/api/register', user)
-    // }
+    register(user) {
+        return this.axios.post('http://localhost:8000/api/register', user)
+    }
 }
 export const authService = new AuthService()
