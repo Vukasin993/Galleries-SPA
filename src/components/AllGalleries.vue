@@ -1,29 +1,23 @@
 <template>
     <div>
         <h1>All Galleries</h1>
-        <h2>askdfdsf</h2>
-        <ul v-for="gallerie in galleries" :key="gallerie.id">
-            <li>sdfdsf</li>
-            <li>{{gallerie.name}}</li>
-            <li>{{gallerie.description}}</li>
-            <li>{{gallerie.user_id}}</li>
-            <li>{{gallerie.user.first_name}}</li>
-            <li>{{gallerie.images[0].source}}</li>
-            <img class="card-img-top" :src="gallerie.images[1].source" alt="Card image cap">
+        <gallery-card v-for="(gallery,index) in galleries" :key="index"
+        :gallery="gallery">
             
-        </ul>
+            
+        </gallery-card>
     </div>
 </template>
 
 <script>
+import GalleryCard from './GalleryCard'
 import {mapGetters, mapActions} from 'vuex'
 
 export default {
+      components: {
+        GalleryCard
+      },
 
-
-  props: {
-        gallerie :Object,
-    },
 
       computed: {
       ...mapGetters([
@@ -47,5 +41,9 @@ export default {
    img {
         height: 400px;
         width: 400px;
+    }
+
+    ul {
+    list-style-type: none;
     }
 </style>
