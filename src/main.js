@@ -8,6 +8,7 @@ import router from './router'
 import Vuex from 'vuex'
 import {store} from './vuex/store'
 
+
 Vue.use(Vuex)
 Vue.use(VueRouter)
 Vue.use(BootstrapVue)

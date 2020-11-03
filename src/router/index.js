@@ -16,6 +16,7 @@ const routes = [
     name: 'all-galleries',
     component: AllGalleries
   },
+  
   {
     path: '/my-galleries',
     name: 'my-galleries',

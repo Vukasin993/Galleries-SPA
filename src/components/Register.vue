@@ -150,8 +150,8 @@ export default {
                 this.errors.push('First name is required or to short.');
             }
 
-            if(!this.last_name || this.last_name.length < 6) {
-                this.errors.push('Last name is required or to short.');
+            if(!this.last_name ) {
+                this.errors.push('Last name is required.');
             }
 
              if(!this.email) {
@@ -171,20 +171,36 @@ export default {
                 }
                 
 
-            if (!this.errors.length) {
-                const user = {
+            // if (!this.errors.length) {
+            //     const user = {
+            //         first_name: this.first_name,
+            //         last_name:this.last_name,
+            //         email: this.email,
+            //         password: this.password,
+            //         password_confirmation: this.password_confirmation,
+            //     };
+            //     this.register(user)
+            //     this.$router.push('/all-galleries')
+                
+            // } else {
+            //     console.log('Bad register');
+            // }
+
+               this.register({
                     first_name: this.first_name,
                     last_name:this.last_name,
                     email: this.email,
                     password: this.password,
                     password_confirmation: this.password_confirmation,
-                };
-                this.register(user);
-                this.$router.push('/all-galleries')
-                
-            } else {
-                console.log('Bad register');
-            }
+                }).then(() => {
+
+                    if(this.errors === null) {
+                       this.$router.push({ name: "all-galleries"});
+                    } else {
+                      console.log('bad request');
+                    }
+                   
+                });
             
         },
   }

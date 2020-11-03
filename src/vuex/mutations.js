@@ -1,7 +1,7 @@
 export const mutations = {
-    // setMovies(state, payload) {
-    //     state.movies = payload
-    // },
+    setGalleries(state, payload) {
+        state.galleries = payload
+    },
     // deleteMovie(state,id) {
     //     state.movies = state.movies.filter(movies => movies.id !== id);
     // },
