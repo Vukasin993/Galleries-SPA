@@ -5,6 +5,7 @@ import Login from '../components/Login'
 import Register from '../components/Register'
 import MyGalleries from '../components/MyGalleries'
 import CreateNewGallery from '../components/CreateNewGallery'
+import Gallery from '../components/Gallery'
 
 
 
@@ -15,6 +16,12 @@ const routes = [
     path: '/',
     name: 'all-galleries',
     component: AllGalleries
+  },
+
+  {
+    path: '/galleries/:id',
+    name: 'gallery',
+    component: Gallery
   },
   
   {

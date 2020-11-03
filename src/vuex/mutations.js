@@ -1,7 +1,14 @@
 export const mutations = {
     setGalleries(state, payload) {
         state.galleries = payload
+    },  
+    getGallery(state, id) {
+        state.galleries = state.galleries.filter(galleries=> galleries.id === id)
     },
+
+    setImages(state, payload) {
+        state.images =payload
+    }
     // deleteMovie(state,id) {
     //     state.movies = state.movies.filter(movies => movies.id !== id);
     // },
@@ -18,7 +25,5 @@ export const mutations = {
     //     state.counter = payload;
     // },
 
-    // getMovie(state, id) {
-    //     state.movies = state.movies.filter(movies=> movies.id === id)
-    // }
+  
 }

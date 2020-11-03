@@ -7,6 +7,15 @@ export const actions= {
         state.commit('setGalleries', data);
     },
 
+    getOne(state) {
+        const data = galleries.getOne();
+        state.commit('getGallery', data)
+    },
+
+    async fetchImages(state) {
+        const data = await this.fetchImages.getAll();
+        state.commit('setImages', data)
+    }
     //  deleteMovie(state, id) {
     //     movies.deleteMovie(id);
     //     state.commit('deleteMovie', id)
@@ -18,8 +27,5 @@ export const actions= {
         
     // },
 
-    // getOne(state) {
-    //     const data = movies.getOne();
-    //     state.commit('getMovie', data)
-    // }
+
 }

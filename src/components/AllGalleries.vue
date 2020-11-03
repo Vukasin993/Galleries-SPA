@@ -1,11 +1,15 @@
 <template>
-    <div>
-        <h1>All Galleries</h1>
+    <div >
+      <h1>All Galleries</h1>
+      <div class="d-flex justify-content-around flex-wrap">
         <gallery-card v-for="(gallery,index) in galleries" :key="index"
         :gallery="gallery">
             
             
         </gallery-card>
+      </div>
+        
+       
     </div>
 </template>
 

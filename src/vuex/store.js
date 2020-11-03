@@ -9,10 +9,12 @@ Vue.use(Vuex)
 export const store = new Vuex.Store({
     state: {
         galleries: [],
+        images: [],
     },
 
     getters: {
         galleries: ({galleries}) => galleries,
+        images: ({images}) => images,
     },
 
     mutations,

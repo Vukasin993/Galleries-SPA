@@ -42,7 +42,7 @@ export default {
                 localStorage.setItem('token', response.data.token)
                 context.commit('setUser', JSON.stringify(response.data.user))
                 localStorage.setItem('user', JSON.stringify(response.data.user))
-                context.commit('setErrors',null) //brisemo errore - restartujemo ih
+                context.commit('setErrors',null) 
                 return response
             } catch(exception) {
                 context.commit('setErrors',exception)
@@ -66,10 +66,7 @@ export default {
 
         logout(context) {
             context.commit('setToken', null)
-            // localStorage.setItem('token', null) drugo resenje
             localStorage.clear();
-            // localStorage.removeItem('token'),
-            // localStorage.removeItem('user',null)
         },
     }
 }
