@@ -16,15 +16,17 @@ export const mutations = {
 
     getAuthor(state, id){
         state.authors= state.authors.filter(authors=>authors.id === id)
-    }
+    },
+    
+    addGallery(state, payload) {
+        state.galleries = payload
+        
+    },
     // deleteMovie(state,id) {
     //     state.movies = state.movies.filter(movies => movies.id !== id);
     // },
 
-    // addMovie(state, payload) {
-    //     state.movies = payload
-        
-    // },
+
     // setSearchText(state, searchText) {
     //     state.searchText = searchText;
     // },

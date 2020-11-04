@@ -195,7 +195,7 @@ export default {
                 }).then(() => {
 
                     if(this.errors === null) {
-                       this.$router.push({ name: "all-galleries"});
+                       this.$router.push({ name: "login"});
                     } else {
                       console.log('bad request');
                     }

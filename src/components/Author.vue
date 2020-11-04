@@ -8,7 +8,7 @@
                 <h3>{{author.name}}</h3>
                 <p>{{author.description}}</p>
                 <h5>{{author.created_at}}</h5>
-                <!-- <img class="card-img-top" :src="author.images[0].source" alt="Card image cap"> -->
+                <img class="card-img-top" :src="author.images[0].source" alt="Card image cap">
             </div> 
             <!-- <p>{{author.galleries[0].name}}</p> -->
         </div>
@@ -41,5 +41,8 @@ export default {
 </script>
 
 <style scoped>
-
+    img {
+        height: 400px;
+        width: 300px;
+    }
 </style>

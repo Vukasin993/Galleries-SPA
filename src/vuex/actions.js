@@ -22,16 +22,19 @@ export const actions= {
         const data = authors.getOne();
         state.commit('getAuthor', data)
     },
+
+    addGallery(state) {
+        const data = galleries.add();
+        state.commit('addGallery', data);
+        
+    },
+
     //  deleteMovie(state, id) {
     //     movies.deleteMovie(id);
     //     state.commit('deleteMovie', id)
     // },
 
-    // addMovie(state) {
-    //     const data = movies.addMovie();
-    //     state.commit('addMovie', data);
-        
-    // },
+
 
 
 }

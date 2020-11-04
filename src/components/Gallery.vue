@@ -5,6 +5,7 @@
         <h4><router-link :to="{ name: 'authors', params: {id: gallery.user.id }}">{{gallery.user.first_name}} {{gallery.user.last_name}}</router-link></h4>
         <p>{{gallery.created_at}}</p>
         <p>{{gallery.description}}</p>
+ 
         <div>
              <b-carousel
                 id="carousel-1"
@@ -23,13 +24,16 @@
             
          </b-carousel>
         </div>
-       
+        <h3>Comments:</h3>
+        <div v-for="comment in gallery.comments" :key="comment.id">
+          <p>{{comment.text}}</p> 
+       </div>
     </div>
 </template>
 
 <script>
 import {galleries} from '../services/Galleries'
-import {mapActions} from 'vuex'
+import {mapActions, mapGetters} from 'vuex'
 
 export default {
     data() {
@@ -41,14 +45,22 @@ export default {
 
     async created() {
         this.gallery = (await galleries.getOne(this.$route.params.id)).data
-        console.log(this.gallery.images)
+        console.log(this.gallery.comments)
+        console.log(this.gallery.user.first_name)
     },
 
     methods: {
         ...mapActions([
             'getOne'
+            
         ])
-    }
+    },
+
+      computed: {
+    ...mapGetters({
+            authors: "authors"
+    })
+  },
 
     //       computed: {
     //   ...mapGetters([
