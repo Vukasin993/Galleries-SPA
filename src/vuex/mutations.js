@@ -36,10 +36,10 @@ export const mutations = {
         state.galleries = state.galleries.filter(galleries => galleries.id !== id);
     },
 
+    setSearchText(state, searchText) {
+        state.searchText = searchText;
+    },
 
-    // setSearchText(state, searchText) {
-    //     state.searchText = searchText;
-    // },
 
     // setCounter(state, payload){
     //     state.counter = payload;

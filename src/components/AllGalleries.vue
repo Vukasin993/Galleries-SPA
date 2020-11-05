@@ -4,7 +4,7 @@
 
       <div class="d-flex justify-content-around flex-wrap">
         
-        <gallery-card v-for="(gallery,index) in galleries" :key="index"
+        <gallery-card v-for="(gallery,index) in filteredGalleries" :key="index"
         :gallery="gallery">
             
             
@@ -30,7 +30,7 @@ export default {
     },
       computed: {
       ...mapGetters({
-
+          filteredGalleries: "filteredGalleries",
           galleries: 'galleries'
       }),
       },
