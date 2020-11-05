@@ -33,7 +33,7 @@
         <h3>Comments:</h3>
         <div v-for="comment in gallery.comments" :key="comment.id" :comment="comment">
             <p>{{comment.user_id}} <span>{{comment.text}}</span></p> 
-           <button v-if="isUserAuthenticated && comment.user_id == loggedUser.id">Delete</button>
+           <button v-if="isUserAuthenticated && comment.user_id == loggedUser.id" @click="deleteComment(comment.id)">Delete</button>
 
        </div>
        <div class>
@@ -87,7 +87,8 @@ export default {
             getOne: 'getOne',
             addComment: 'addComment',
             getLoggedUser: 'auth/getLoggedUser',
-            deleteGallery: 'deleteGallery'
+            deleteGallery: 'deleteGallery',
+            deleteComment: 'deleteComment'
         }),
 
 

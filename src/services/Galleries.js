@@ -26,6 +26,10 @@ class Galleries {
         return axios.post(`/galleries/${id}/comments`, data)
     }
 
+    deleteComment(id) {
+        return axios.delete(`/comments/${id}`)
+    }
+
     deleteGallery(id) {
         return axios.delete(`/galleries/${id}`)
     }

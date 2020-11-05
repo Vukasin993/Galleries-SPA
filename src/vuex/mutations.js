@@ -27,6 +27,10 @@ export const mutations = {
         state.comments = payload
     },
 
+    deleteComment(state, id) {
+        state.comments = state.comments.filter(comments => comments.id !== id)
+    },
+
     deleteGallery(state,id) {
         state.galleries = state.galleries.filter(galleries => galleries.id !== id);
     },
