@@ -8,13 +8,18 @@ export default {
     state: {
         token: localStorage.getItem('token'),
         errors: null,
-        user: localStorage.getItem('user')
+        user: localStorage.getItem('user'),
+        loggedUser: {},
     },
 
     getters: {
         isUserAuthenticated(state) {
             return !!state.token
         },
+
+        loggedUser: ({loggedUser}) => loggedUser,
+        
+
         errors(state) {
             return state.errors
         },
@@ -26,6 +31,10 @@ export default {
     mutations: {
         setToken(state, token) {
             state.token = token
+        },
+        setLoggedUser(state, payload) {
+            state.loggedUser = payload,
+            console.log('mutacija', state.loggedUser)
         },
         setErrors(state, errors) {
             state.errors = errors
@@ -47,6 +56,12 @@ export default {
             } catch(exception) {
                 context.commit('setErrors',exception)
             }
+        },
+
+        async getLoggedUser(state) {
+            const response = await axios.get('http://localhost:8000/api/user')
+                state.commit('setLoggedUser', response.data);
+
         },
 
         async register(context, user) {

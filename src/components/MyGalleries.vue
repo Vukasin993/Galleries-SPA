@@ -1,61 +1,56 @@
 <template>
     <div>
         <h1>My Galleries</h1>
-        <h2>{{gallery.name}}</h2>
-        <p>{{gallery.created_at}}</p>
-        <p>{{gallery.description}}</p>
-        <div>
-             <b-carousel
-                id="carousel-1"
-                :interval="4000"
-                controls
-                indicators
-                background="#ababab"
-                img-width="1024"
-                img-height="480"
-                style="text-shadow: 1px 1px 2px #333;"
-                >
-            
-                     <b-carousel-slide v-for="(image,index) in gallery.images" :key="index"   :img-src="image.source" alt="Card image cap" >
-                         
-                     </b-carousel-slide>
-            
-         </b-carousel>
+
+        <h3>{{loggedUser.last_name}} {{loggedUser.first_name}}</h3>
+    
+        <div class="d-flex justify-content-around flex-wrap">
+            <div v-for="gallery in loggedUser.galleries" :key="gallery.id">
+                <div class="card"  style="width: 300px; height: 800px; margin-bottom: 30px;">
+                <img class="card-img-top" :src="gallery.images[0].source" alt="Card image cap">
+                <h3 class="card-title">{{gallery.name}}</h3>
+                <ul class="list-group list-group-flush" >
+                    <li class="list-group-item">{{gallery.description}}</li>
+                    <li class="list-group-item">{{gallery.created_at}}</li>
+                </ul>
+                </div>  
+            </div>
         </div>
        
     </div>
 </template>
 
 <script>
-import {galleries} from '../services/Galleries'
+// import {galleries} from '../services/Galleries'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
     data() {
         return {
-            gallery:[],
+            // gallery:[],
         }
     },
 
 
     async created() {
-        this.gallery = (await galleries.getOne(this.$route.params.id)).data
-        // console.log(user)
+        // this.gallery = (await galleries.getOne(this.$route.params.id)).data;
+        this.getLoggedUser();
     },
 
     methods: {
-        ...mapActions([
-            'getOne'
-        ])
+        ...mapActions({
+            //  getOne: 'getOne',
+             getLoggedUser: 'auth/getLoggedUser'
+        })
     },
 
     computed: {
-      ...mapGetters({
-         user: "auth/user",
-        
-      }),
-      
-  },
+        ...mapGetters({
+                authors: "authors",
+                isUserAuthenticated: "auth/isUserAuthenticated",
+                loggedUser: "auth/loggedUser"
+        })
+    },
     //       computed: {
     //   ...mapGetters([
           

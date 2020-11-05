@@ -29,10 +29,15 @@ export const actions= {
         
     },
 
-    //  deleteMovie(state, id) {
-    //     movies.deleteMovie(id);
-    //     state.commit('deleteMovie', id)
-    // },
+    addComment(state) {
+        const data = galleries.addComment();
+        state.commit('addComment', data);
+    },
+
+     deleteGallery(state, id) {
+        galleries.deleteGallery(id);
+        state.commit('deleteGallery', id)
+    },
 
 
 

@@ -1,7 +1,9 @@
 <template>
     <div >
       <h1>All Galleries</h1>
+
       <div class="d-flex justify-content-around flex-wrap">
+        
         <gallery-card v-for="(gallery,index) in galleries" :key="index"
         :gallery="gallery">
             
@@ -22,22 +24,24 @@ export default {
         GalleryCard
       },
 
-
-      computed: {
-      ...mapGetters([
-          
-          'galleries'
-      ]),
-      },
-    methods: {
-      ...mapActions( [
-          'fetchGalleries'
-      ]),
-    },
-
     created() {
       this.fetchGalleries();
+
     },
+      computed: {
+      ...mapGetters({
+
+          galleries: 'galleries'
+      }),
+      },
+    methods: {
+      ...mapActions( {
+          fetchGalleries: 'fetchGalleries',
+
+    }),
+    },
+
+
 }
 </script>
 

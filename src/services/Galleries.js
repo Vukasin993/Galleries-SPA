@@ -22,9 +22,13 @@ class Galleries {
         
     }
 
-    // deleteGallerie(id) {
-    //     return axios.delete(`/galleries/${id}`)
-    // }
+    addComment(data, id) {
+        return axios.post(`/galleries/${id}/comments`, data)
+    }
+
+    deleteGallery(id) {
+        return axios.delete(`/galleries/${id}`)
+    }
 
     getOne(id) {
         return axios.get(`/galleries/${id}`);

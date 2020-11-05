@@ -22,9 +22,14 @@ export const mutations = {
         state.galleries = payload
         
     },
-    // deleteMovie(state,id) {
-    //     state.movies = state.movies.filter(movies => movies.id !== id);
-    // },
+
+    addComment(state, payload) {
+        state.comments = payload
+    },
+
+    deleteGallery(state,id) {
+        state.galleries = state.galleries.filter(galleries => galleries.id !== id);
+    },
 
 
     // setSearchText(state, searchText) {
