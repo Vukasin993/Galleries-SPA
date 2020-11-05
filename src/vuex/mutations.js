@@ -24,7 +24,8 @@ export const mutations = {
     },
 
     addComment(state, payload) {
-        state.comments = payload
+        state.comments = payload;
+        console.log('mutacija')
     },
 
     deleteComment(state, id) {

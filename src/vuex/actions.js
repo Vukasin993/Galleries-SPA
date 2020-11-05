@@ -23,28 +23,25 @@ export const actions= {
         state.commit('getAuthor', data)
     },
 
-    addGallery(state) {
-        const data = galleries.add();
-        state.commit('addGallery', data);
-        
-    },
-
     addComment(state) {
         const data = galleries.addComment();
         state.commit('addComment', data);
+        console.log('akcija', data)
     },
-
-    deleteComment(state, id) {
+     deleteComment(state, id) {
         galleries.deleteComment(id);
         state.commit('deleteComment', id)
     },
 
-     deleteGallery(state, id) {
+    deleteGallery(state, id) {
         galleries.deleteGallery(id);
         state.commit('deleteGallery', id)
     },
-
-
+    // addMovie(state) {
+    //     const data = movies.addMovie();
+    //     state.commit('addMovie', data);
+        
+    // },
 
 
 }

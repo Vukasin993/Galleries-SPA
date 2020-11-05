@@ -6,6 +6,7 @@ import Register from '../components/Register'
 import MyGalleries from '../components/MyGalleries'
 import CreateNewGallery from '../components/CreateNewGallery'
 import Gallery from '../components/Gallery'
+import EditGallery from '../components/EditGallery'
 import Author from '../components/Author'
 
 
@@ -23,6 +24,12 @@ const routes = [
     path: '/galleries/:id',
     name: 'gallery',
     component: Gallery
+  },
+
+  {
+    path: '/edit-gallery/:id',
+    name: 'edit-gallery',
+    component: EditGallery
   },
 
 

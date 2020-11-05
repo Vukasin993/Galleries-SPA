@@ -2,12 +2,12 @@
     <div>
         <h1>Gallery</h1>
         <h2>{{gallery.name}}</h2>
-        <h3>{{gallery.user.id}}</h3>
+        <h1> {{loggedUser.last_name}} {{loggedUser.first_name}}</h1>
         <h4><router-link :to="{ name: 'authors', params: {id: gallery.user.id }}">{{gallery.user.first_name}} {{gallery.user.last_name}}</router-link></h4>
         <p>{{gallery.created_at}}</p>
         <p>{{gallery.description}}</p>
                 <div class="card-body" >
-              
+              <button type="button" @click="editGallery(gallery.id)"  v-if="isUserAuthenticated && gallery.user.id == loggedUser.id" class="btn btn-success"><router-link :to="{ name: 'edit-gallery', params: {id: gallery.id }}">Edit Gallery</router-link></button>
                 <button type="button" @click="deleteGallery(gallery.id)"  v-if="isUserAuthenticated && gallery.user.id == loggedUser.id" class="btn btn-danger">Delete Gallery</button>
           </div>
  
@@ -32,7 +32,7 @@
 
         <h3>Comments:</h3>
         <div v-for="comment in gallery.comments" :key="comment.id" :comment="comment">
-            <p>{{comment.user_id}} <span>{{comment.text}}</span></p> 
+            <p>{{comment.text}}</p> 
            <button v-if="isUserAuthenticated && comment.user_id == loggedUser.id" @click="deleteComment(comment.id)">Delete</button>
 
        </div>
@@ -41,11 +41,17 @@
         
               <form @submit.prevent="onSubmit" class="form-inline" v-if="isUserAuthenticated">
                 <textarea
-                  v-model="form.text"
+                  v-model="text"
                   placeholder="Write your comment here!"
                   class="pb-cmnt-textarea"
                 ></textarea> 
                 <button class="btn btn-primary pull-right" type="submit">Add Comment</button>
+                    <div class="alert alert-danger" v-if="errors.length"> 
+                <ul class="mb-0">
+                    <li v-for="(error,index) in errors" :key="index">{{error}}</li>
+                </ul>
+            </div>
+                
               </form>
              
        
@@ -62,30 +68,21 @@ export default {
     data() {
         return {
             gallery:[],
-            form: { 
-                author: "", 
-                text: "", 
-                user_id: "", 
-                gallery_id: "" 
-                }
+            text: '',
+            errors: [],
         }
-    },
-
-    props: {
-        comments: Object
     },
 
 
     async created() {
         this.gallery = (await galleries.getOne(this.$route.params.id)).data,
         this.getLoggedUser();
-       
     },
 
     methods: {
         ...mapActions({
             getOne: 'getOne',
-            addComment: 'addComment',
+            // addComment: 'addComment',
             getLoggedUser: 'auth/getLoggedUser',
             deleteGallery: 'deleteGallery',
             deleteComment: 'deleteComment'
@@ -94,19 +91,32 @@ export default {
 
 
         onSubmit() {
-    
-            this.form.author = this.user.first_name + " " + this.user.last_name;
-            this.form.author_id = this.user.id;
-            this.form.gallery_id = this.gallery.id;
-            this.addComment(this.form);
+            this.errors = [];
+
+            if(!this.text || this.text.length > 1000) {
+                this.errors.push('Text  is required or to long.');
+            }
+
+           if (!this.errors.length) {
+               const data = {
+                   text: this.text,
+                   user_id:this.loggedUser.id,
+                   gallery_id: this.gallery.id
+               };
+
+            galleries.addComment(data, this.gallery.id)
+
+           } 
+          
         }
     },
 
       computed: {
     ...mapGetters({
-            authors: "authors",
+            // authors: "authors",
             isUserAuthenticated: "auth/isUserAuthenticated",
-            loggedUser: "auth/loggedUser"
+            loggedUser: "auth/loggedUser",
+            comments: "comments"
     })
   },
 
