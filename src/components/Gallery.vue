@@ -2,7 +2,6 @@
     <div>
         <h1>Gallery</h1>
         <h2>{{gallery.name}}</h2>
-        <h1> {{loggedUser.last_name}} {{loggedUser.first_name}}</h1>
         <h4><router-link :to="{ name: 'authors', params: {id: gallery.user.id }}">{{gallery.user.first_name}} {{gallery.user.last_name}}</router-link></h4>
         <p>{{gallery.created_at}}</p>
         <p>{{gallery.description}}</p>
@@ -31,7 +30,7 @@
         </div>
 
         <h3>Comments:</h3>
-        <div v-for="comment in gallery.comments" :key="comment.id" :comment="comment">
+        <div v-for="comment in comments" :key="comment.id" >
             <p>{{comment.text}}</p> 
            <button v-if="isUserAuthenticated && comment.user_id == loggedUser.id" @click="deleteComment(comment.id)">Delete</button>
 
@@ -64,25 +63,27 @@
 import {galleries} from '../services/Galleries'
 import {mapActions, mapGetters} from 'vuex'
 
+
 export default {
     data() {
         return {
-            gallery:[],
+            // gallery:[],
             text: '',
             errors: [],
         }
     },
 
 
-    async created() {
-        this.gallery = (await galleries.getOne(this.$route.params.id)).data,
+     created() {
+        this.getOne(this.$route.params.id)
+        // this.gallery = (await galleries.getOne(this.$route.params.id)).data,
         this.getLoggedUser();
     },
 
     methods: {
         ...mapActions({
             getOne: 'getOne',
-            // addComment: 'addComment',
+            addComment: 'addComment',
             getLoggedUser: 'auth/getLoggedUser',
             deleteGallery: 'deleteGallery',
             deleteComment: 'deleteComment'
@@ -116,7 +117,8 @@ export default {
             // authors: "authors",
             isUserAuthenticated: "auth/isUserAuthenticated",
             loggedUser: "auth/loggedUser",
-            comments: "comments"
+            comments: "comments",
+            gallery: 'gallery'
     })
   },
 

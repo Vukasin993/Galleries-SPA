@@ -34,8 +34,9 @@ class Galleries {
         return axios.delete(`/galleries/${id}`)
     }
 
-    getOne(id) {
-        return axios.get(`/galleries/${id}`);
+    async getOne(id) {
+        const { data } = await axios.get(`/galleries/${id}`);
+        return data;
     }
 
 }

@@ -10,6 +10,7 @@ Vue.use(Vuex)
 export const store = new Vuex.Store({
     state: {
         galleries: [],
+        gallery: null,
         images: [],
         authors: [],
         comments: [],
@@ -18,6 +19,7 @@ export const store = new Vuex.Store({
 
     getters: {
         galleries: ({galleries}) => galleries,
+        gallery: ({gallery}) => {console.log('gallery getter', { gallery }); return gallery},
         images: ({images}) => images,
         authors: ({authors}) => authors,
         comments: ({comments}) => comments,
