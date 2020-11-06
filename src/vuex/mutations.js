@@ -3,8 +3,11 @@ export const mutations = {
         state.galleries = payload
     },  
     setGallery(state, gallery) {
-        console.log('SET GALLERY MUTATION', { gallery })
         state.gallery = gallery
+    },
+
+    setMyGalleries(state, payload) {
+        state.galleries= payload
     },
 
     setImages(state, payload) {
@@ -41,9 +44,9 @@ export const mutations = {
         state.galleries = state.galleries.filter(galleries => galleries.id !== id);
     },
 
-    setSearchText(state, searchText) {
-        state.searchText = searchText;
-    },
+    // setSearchText(state, searchText) {
+    //     state.searchText = searchText;
+    // },
 
 
     // setCounter(state, payload){

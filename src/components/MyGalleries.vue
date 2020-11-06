@@ -34,14 +34,14 @@ export default {
 
 
     async created() {
-        this.getOne(this.$route.params.id);
+        this.myGalleries();
         // this.gallery = (await galleries.getOne(this.$route.params.id)).data;
         this.getLoggedUser();
     },
 
     methods: {
         ...mapActions({
-             getOne: 'getOne',
+             myGalleries: 'myGalleries',
              getLoggedUser: 'auth/getLoggedUser'
         })
     },
@@ -54,17 +54,7 @@ export default {
                 gallery: 'gallery'
         })
     },
-    //       computed: {
-    //   ...mapGetters([
-          
-    //       'images'
-    //   ]),
-    //   },
-    // methods: {
-    //   ...mapActions( [
-    //       'getOne',
-    //       'fetchImages'
-    //   ]),
+
 }
 </script>
 

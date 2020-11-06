@@ -4,17 +4,17 @@
 
       <div class="d-flex justify-content-around flex-wrap">
         
-        <gallery-card v-for="(gallery,index) in filteredGalleries" :key="index"
+        <gallery-card v-for="(gallery,index) in galleries" :key="index"
         :gallery="gallery">
             
             
         </gallery-card>
-        <div v-if="!filteredGalleries.length">
+        <div v-if="!galleries.length">
         <h1>Sorry, there is no gallery</h1>
         </div>
-        <!-- <button @click="handleLoadMoreGalleries">Load more...</button>  -->
-      </div>
         
+      </div>
+        <button @click="handleLoad">Load more...</button> 
        
     </div>
 </template>
@@ -25,6 +25,12 @@ import {mapGetters, mapActions} from 'vuex'
 
 export default {
 
+      data() {
+        return {
+            pagination : 10,
+            currentSize: 10
+        }
+    },
       components: {
         GalleryCard
       },
@@ -47,7 +53,10 @@ export default {
 
     }),
 
-
+          handleLoad() {
+          this.currentSize += this.pagination
+                  this.fetchGalleries(this.currentSize)
+            },
       },
     
 

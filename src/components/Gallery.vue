@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="gallery">
         <h1>Gallery</h1>
         <h2>{{gallery.name}}</h2>
         <h4><router-link :to="{ name: 'authors', params: {id: gallery.user.id }}">{{gallery.user.first_name}} {{gallery.user.last_name}}</router-link></h4>
@@ -62,7 +62,7 @@
 <script>
 import {galleries} from '../services/Galleries'
 import {mapActions, mapGetters} from 'vuex'
-
+import {store} from '../vuex/store'
 
 export default {
     data() {
@@ -74,12 +74,17 @@ export default {
     },
 
 
-     created() {
-        this.getOne(this.$route.params.id);
-        // this.gallery = (await galleries.getOne(this.$route.params.id)).data,
-        this.getLoggedUser();
-        this.addComment();
-    },
+    //  created() {
+    //     this.getOne(this.$route.params.id);
+    //     // this.gallery = (await galleries.getOne(this.$route.params.id)).data,
+    //     this.getLoggedUser();
+    //     this.addComment();
+    // },
+
+    beforeRouteEnter(to, from, next) {
+        console.log('before route enter', { to })
+        store.dispatch('getOne', to.params.id).then(()=>next());
+    }, 
 
     methods: {
         ...mapActions({
