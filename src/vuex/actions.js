@@ -20,9 +20,9 @@ export const actions= {
         state.commit('setImages', data)
     },
 
-    getOneAuthor(state) {
-        const data = authors.getOne();
-        state.commit('getAuthor', data)
+    getOneAuthor(state, id) {
+        const data = authors.getOne(id);
+        state.commit('setAuthor', data)
     },
 
     addComment(state) {

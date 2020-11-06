@@ -16,6 +16,7 @@
                 </div>  
             </div>
         </div>
+
        
     </div>
 </template>
@@ -33,13 +34,14 @@ export default {
 
 
     async created() {
+        this.getOne(this.$route.params.id);
         // this.gallery = (await galleries.getOne(this.$route.params.id)).data;
         this.getLoggedUser();
     },
 
     methods: {
         ...mapActions({
-            //  getOne: 'getOne',
+             getOne: 'getOne',
              getLoggedUser: 'auth/getLoggedUser'
         })
     },
@@ -48,7 +50,8 @@ export default {
         ...mapGetters({
                 authors: "authors",
                 isUserAuthenticated: "auth/isUserAuthenticated",
-                loggedUser: "auth/loggedUser"
+                loggedUser: "auth/loggedUser",
+                gallery: 'gallery'
         })
     },
     //       computed: {

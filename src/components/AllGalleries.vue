@@ -9,6 +9,10 @@
             
             
         </gallery-card>
+        <div v-if="!filteredGalleries.length">
+        <h1>Sorry, there is no gallery</h1>
+        </div>
+        <!-- <button @click="handleLoadMoreGalleries">Load more...</button>  -->
       </div>
         
        
@@ -20,6 +24,7 @@ import GalleryCard from './GalleryCard'
 import {mapGetters, mapActions} from 'vuex'
 
 export default {
+
       components: {
         GalleryCard
       },
@@ -33,13 +38,18 @@ export default {
           filteredGalleries: "filteredGalleries",
           galleries: 'galleries'
       }),
+
       },
+    
     methods: {
       ...mapActions( {
           fetchGalleries: 'fetchGalleries',
 
     }),
-    },
+
+
+      },
+    
 
 
 }

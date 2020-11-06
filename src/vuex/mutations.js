@@ -15,7 +15,7 @@ export const mutations = {
         state.authors = payload
     },
 
-    getAuthor(state, id){
+    setAuthor(state, id){
         state.authors= state.authors.filter(authors=>authors.id === id)
     },
     

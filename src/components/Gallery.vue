@@ -75,9 +75,10 @@ export default {
 
 
      created() {
-        this.getOne(this.$route.params.id)
+        this.getOne(this.$route.params.id);
         // this.gallery = (await galleries.getOne(this.$route.params.id)).data,
         this.getLoggedUser();
+        this.addComment();
     },
 
     methods: {
