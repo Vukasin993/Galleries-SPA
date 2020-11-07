@@ -10,7 +10,7 @@
             <div v-for="gallery in myGalleries" :key="gallery.id">
                 <div class="card"  style="width: 300px; height: 800px; margin-bottom: 30px;">
                 <img class="card-img-top" :src="gallery.images[0].source" alt="Card image cap">
-                <h3 class="card-title">{{gallery.name}}</h3>
+                <h3 class="card-title"><router-link :to="{ name: 'authors', params: {id: gallery.user.id }}">{{gallery.name}}</router-link></h3>
                 <ul class="list-group list-group-flush" >
                     <li class="list-group-item">{{gallery.description}}</li>
                     <li class="list-group-item">{{gallery.created_at}}</li>
