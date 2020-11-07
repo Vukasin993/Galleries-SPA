@@ -8,8 +8,8 @@ export const actions= {
         state.commit('setGalleries', data);
     },
 
-    async myGalleries(state) {
-        const data = await galleries.myGalleries();
+    async getMyGalleries(state, payload) {
+        const data = await galleries.myGalleries(payload);
         state.commit('setMyGalleries', data)
     },
 
