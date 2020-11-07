@@ -1,25 +1,30 @@
 <template>
     <div >
-      <h1>All Galleries</h1>
-
+      <div class="searchBar">
+        <h1>All Galleries</h1>
+      <div>
+        <SearchGallery @handleSearchText="setSearchText"/>
+      </div>
+      </div>
+      
       <div class="d-flex justify-content-around flex-wrap">
         
-        <gallery-card v-for="(gallery,index) in galleries" :key="index"
+        <gallery-card v-for="gallery in galleries" :key="gallery.id"
         :gallery="gallery">
-            
-            
         </gallery-card>
-        <div v-if="!galleries.length">
+        
+        <!-- <div v-if="!galleries.length">
         <h1>Sorry, there is no gallery</h1>
-        </div>
+        </div> -->
         
       </div>
-        <button @click="handleLoad">Load more...</button> 
        
+       <button class="btn btn-primary" style="marginBottom: 15px" v-if="currentSize <= numberPerPage" @click="loadMoreGalleries">Load More</button>
     </div>
 </template>
 
 <script>
+import SearchGallery from './SearchGallery'
 import GalleryCard from './GalleryCard'
 import {mapGetters, mapActions} from 'vuex'
 
@@ -27,22 +32,23 @@ export default {
 
       data() {
         return {
-            pagination : 10,
+            searchText: '',
             currentSize: 10
         }
     },
       components: {
-        GalleryCard
+        GalleryCard,
+        SearchGallery
       },
 
-    created() {
-      this.fetchGalleries();
+    // created() {
+    //   this.fetchGalleries({'pagination': 5, 'searchText': ''});
 
-    },
+    // },
       computed: {
       ...mapGetters({
-          filteredGalleries: "filteredGalleries",
-          galleries: 'galleries'
+          galleries: 'galleries',
+          numberPerPage: 'numberPerPage'
       }),
 
       },
@@ -53,14 +59,23 @@ export default {
 
     }),
 
-          handleLoad() {
-          this.currentSize += this.pagination
-                  this.fetchGalleries(this.currentSize)
-            },
-      },
-    
 
+    loadMoreGalleries() {
+      this.currentSize += 10
+      this.fetchGalleries({'pagination': this.currentSize, 'searchText': this.searchText})
+    },
 
+    setSearchText(search) {
+      this.searchText = search
+      this.fetchGalleries({'pagination': this.currentSize, 'searchText': this.searchText})
+    }
+
+    },
+    beforeRouteEnter(to, from, next) {
+            next(vm => {
+                vm.fetchGalleries({'pagination':10, 'searchText': ''});
+            })
+      }
 }
 </script>
 
@@ -72,5 +87,10 @@ export default {
 
     ul {
     list-style-type: none;
+    }
+
+    .searchBar {
+      display: flex;
+      justify-content: space-between;
     }
 </style>

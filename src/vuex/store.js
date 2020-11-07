@@ -14,7 +14,9 @@ export const store = new Vuex.Store({
         images: [],
         authors: [],
         comments: [],
+        numberPerPage: Number
         // searchText: ''
+        
     },
 
     getters: {
@@ -23,6 +25,7 @@ export const store = new Vuex.Store({
         images: ({images}) => images,
         authors: ({authors}) => authors,
         comments: ({comments}) => comments,
+        numberPerPage: ({numberPerPage}) => numberPerPage,
         // filteredGalleries: state =>state.galleries.filter(gallery =>gallery.name.toLowerCase().indexOf(state.searchText.toLowerCase()) > -1)
     },
 

@@ -3,8 +3,8 @@ import {galleries} from '../services/Galleries'
 import {authors} from '../services/Author'
 
 export const actions= {
-    async fetchGalleries(state) {
-        const data = await galleries.getAll();
+    async fetchGalleries(state, payload) {
+        const data = await galleries.getAll(payload);
         state.commit('setGalleries', data);
     },
 
